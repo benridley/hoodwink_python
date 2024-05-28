@@ -16,6 +16,8 @@ openai = "^1.11.0"
 tenacity = "^8.2.3"
 anthropic = "^0.25.6"
 
+[tool.poetry.scripts]
+hoodwink = "hoodwink.main:main"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.1.1"
