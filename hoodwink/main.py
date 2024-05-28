@@ -1,10 +1,13 @@
 import os
 from fastapi import FastAPI
 from fastapi import HTTPException
+from fastapi.responses import JSONResponse
 import uvicorn
 from hoodwink.processor import fetch_text, extract_ingredients
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+
+from fastapi import Request
 
 app = FastAPI()
 
@@ -15,6 +18,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def check_bearer_token(request: Request, call_next):
+    auth_header = request.headers.get("Authorization")
+    if auth_header != "Bearer thisisben":
+        return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
+    response = await call_next(request)
+    return response
 
 
 class UrlModel(BaseModel):
