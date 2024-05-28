@@ -1,12 +1,9 @@
 import json
 import textwrap
-from typing import cast
 from bs4 import BeautifulSoup
 import requests
-from openai import OpenAI
-from openai.types.chat import ChatCompletion
-from tenacity import retry, wait_random_exponential, stop_after_attempt
 import re
+from html.parser import HTMLParser
 from hoodwink.ai_client import AIClient
 
 
@@ -72,8 +69,6 @@ def fetch_text(url: str) -> str:
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content, "lxml")
-
-    # Join all processed text with a newline separator, additional newline already added
     return soup.get_text(" ", strip=True)
 
 

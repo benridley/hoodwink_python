@@ -2,9 +2,9 @@ import os
 from typing import Any, Literal
 from openai import OpenAI
 from openai.types.chat import ChatCompletion
-import anthropic
+
+# import anthropic
 import json
-from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 OPENAI_MODEL = "gpt-4o"
 ANTHROPIC_MODEL = "claude-3-sonnet-20240229"
