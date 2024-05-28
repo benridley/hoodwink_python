@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "hoodwink"
+version = "0.1.0"
+description = "Backend for Hoodwink - your grocery assistant"
+authors = ["Ben Ridley <ben@brids.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.109.1"
+uvicorn = {extras = ["standard"], version = "^0.27.0.post1"}
+beautifulsoup4 = "^4.12.3"
+requests = "^2.31.0"
+lxml = "^5.1.0"
+openai = "^1.11.0"
+tenacity = "^8.2.3"
+anthropic = "^0.25.6"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
