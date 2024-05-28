@@ -23,7 +23,8 @@ app.add_middleware(
 @app.middleware("http")
 async def check_bearer_token(request: Request, call_next):
     auth_header = request.headers.get("Authorization")
-    if auth_header != "Bearer thisisben":
+    expected_token = os.getenv("SIMPLE_AUTH_TOKEN")
+    if auth_header != f"Bearer {expected_token}":
         return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
     response = await call_next(request)
     return response
